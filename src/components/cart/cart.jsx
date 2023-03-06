@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import closeIcon from 'assets/images/close.svg';
 import './cart.scss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,11 +16,6 @@ export function Cart({ onClose }) {
   const isEnoughCoins = userCoins >= totalPrice;
 
   function handleOrder() {
-    if (!isEnoughCoins) {
-      alert('У вас недостаточно хаккоинов!');
-      return;
-    }
-
     const orderProducts = cartProducts.map(({ id, amount }) => ({
       product_id: id,
       amount,
@@ -66,7 +61,9 @@ export function Cart({ onClose }) {
                   {totalPrice} Х
                 </span>
               </div>
-              <button onClick={handleOrder} className="cart-conclusion__button">
+              <button onClick={handleOrder} disabled={!isEnoughCoins} className={classNames("cart-conclusion__button", {
+                'cart-conclusion__button--disabled': !isEnoughCoins
+              })}>
                 Оформить заказ
               </button>
             </div>

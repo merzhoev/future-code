@@ -4,13 +4,16 @@ import logo from "assets/images/logo.svg";
 import phone from "assets/images/phone.svg";
 import mail from "assets/images/mail.svg";
 import location from "assets/images/location.svg";
+import { Link } from "react-router-dom";
 
 export function Footer() {
   return (
     <footer className="footer">
       <div className="footer__inner container">
         <div className="footer__logo logo">
-          <img src={logo} alt="logo" />
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
           <p className="">
             В Республике <br /> Ингушетия
           </p>
