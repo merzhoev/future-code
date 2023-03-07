@@ -1,5 +1,5 @@
 .cart {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
 
   &__items {
     overflow-y: auto;
@@ -183,6 +183,10 @@
       cursor: pointer;
       border: none;
       border-radius: 38px;
+      &--disabled {
+        cursor: default;
+        background-color: gray;
+      }
     }
   }
 }

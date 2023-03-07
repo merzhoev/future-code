@@ -63,7 +63,9 @@ export function Cart() {
                   {totalPrice} Х
                 </span>
               </div>
-              <button onClick={handleOrder} className="cart-conclusion__button">
+              <button onClick={handleOrder} disabled={!isEnoughCoins} className={classNames("cart-conclusion__button", {
+                'cart-conclusion__button--disabled': !isEnoughCoins
+              })}>
                 Оформить заказ
               </button>
             </div>
