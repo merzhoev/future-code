@@ -31,6 +31,10 @@
     text-transform: uppercase;
     color: var(--text-color);
     text-align: center;
+
+    &--success {
+      color: var(--primary-color);
+    }
   }
 
   &__close-icon {
