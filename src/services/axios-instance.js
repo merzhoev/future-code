@@ -2,6 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: "https://store.kod06.ru/api",
+  // baseURL: "http://192.168.88.37:8000/api",
 });
 
 instance.interceptors.request.use(
@@ -11,6 +12,7 @@ instance.interceptors.request.use(
     if (token) {
       config.headers = {
         authorization: `Bearer ${token}`,
+        ...config.headers,
       };
     }
 
@@ -31,7 +33,7 @@ instance.interceptors.response.use(
       console.log('redirect')
       window.location.pathname = '/login'
 
-      // return axios(config);
+      return axios(config);
     }
     return Promise.reject(error);
   }

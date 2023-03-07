@@ -47,6 +47,10 @@
         background-color: var(--primary-color);
       }
     }
+
+    &--add-btn {
+      font-size: 30px;
+    }
   }
 
   @media screen and (max-width: 576px) {

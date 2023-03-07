@@ -9,17 +9,31 @@ class Api {
     return instance.post("orders/make", { orders });
   }
 
-  //Получение данных пользователя
   getUser() {
     return instance.get("users/me");
   }
 
-  //Получение продуктов
   getProducts(params) {
     return instance.get(`products${params}`);
   }
 
-  //Получение категорий
+  createProduct(productData) {
+    return instance.post('products/add', productData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+  }
+
+  addProductCategory(productData) {
+    return instance.post('products/add_to_category', productData, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+
   getCategories() {
     return instance.get("categories");
   }
