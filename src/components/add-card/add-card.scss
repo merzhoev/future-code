@@ -33,4 +33,13 @@
     padding: 10px;
     cursor: pointer;
   }
+
+  &__success {
+    color: var(--primary-color);
+    text-align: center;
+  }
+  &__failed {
+    color: #9f1313;
+    text-align: center;
+  }
 }
