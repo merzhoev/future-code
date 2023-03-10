@@ -1,5 +1,6 @@
 import React from 'react';
 import trashIcon from 'assets/images/trash.svg';
+import coinIcon from 'assets/images/coin.svg';
 import { useDispatch } from 'react-redux';
 import { cartActions } from 'store/slices/cartSlice';
 
@@ -37,7 +38,11 @@ export function CartCard({ id, title, image, totalPrice, amount }) {
               +
             </button>
           </div>
-          <span className="cart-card__price">{totalPrice} Х</span>
+          <span
+            style={{ display: 'flex', columnGap: '5px', alignItems: 'center' }}
+            className="cart-card__price">
+            {totalPrice} <img className="coin-m" src={coinIcon} alt="coin" />
+          </span>
           <button onClick={handleRemoveClick} className="cart-card__detail">
             <img src={trashIcon} alt="cart" />
           </button>
