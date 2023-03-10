@@ -6,6 +6,7 @@ import { NotFoundPage } from "pages/notFound-page";
 import ProtectedRoute from "services/useAuth";
 import { AuthLayout } from "layouts/auth-layout";
 import { Toastify } from "components/toastify";
+import { OrderPage } from "pages/order-page/order-page";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<AuthLayout />}>
           <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/orders" element={<OrderPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
