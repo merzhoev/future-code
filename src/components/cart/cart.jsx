@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { $api } from 'services/api';
 import { getUser } from 'store/slices/userSlice';
 import { cartActions } from 'store/slices/cartSlice';
+import coinIcon from 'assets/images/coin.svg';
 import './cart.scss';
 
 export function Cart() {
@@ -44,7 +45,9 @@ export function Cart() {
       </div>
 
       {isSuccessOrder ? (
-        <h2 className="cart__empty-text cart__empty-text--success">Заказ оформлен</h2>
+        <h2 className="cart__empty-text cart__empty-text--success">
+          Ваш заказ будет доставлен в течении 2-х недель.
+        </h2>
       ) : cartProducts.length > 0 ? (
         <>
           <div className="cart__items">
@@ -57,15 +60,19 @@ export function Cart() {
               <div className="cart-conclusion__price-container">
                 <p className="cart-conclusion__text">Итого:</p>
                 <span
+                  style={{ display: 'flex', columnGap: '5px', alignItems: 'center' }}
                   className={classNames('cart-conclusion__price', {
                     'cart-conclusion__price--attention': !isEnoughCoins,
                   })}>
-                  {totalPrice} Х
+                  {totalPrice} <img className="coin-l" src={coinIcon} alt="coin" />
                 </span>
               </div>
-              <button onClick={handleOrder} disabled={!isEnoughCoins} className={classNames("cart-conclusion__button", {
-                'cart-conclusion__button--disabled': !isEnoughCoins
-              })}>
+              <button
+                onClick={handleOrder}
+                disabled={!isEnoughCoins}
+                className={classNames('cart-conclusion__button', {
+                  'cart-conclusion__button--disabled': !isEnoughCoins,
+                })}>
                 Оформить заказ
               </button>
             </div>

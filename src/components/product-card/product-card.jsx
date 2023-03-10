@@ -4,11 +4,13 @@ import { cartActions } from 'store/slices/cartSlice';
 import { ReactComponent as DotsIcon } from 'assets/images/vertical-dots.svg';
 import classNames from 'classnames';
 import { useOutsideClick } from 'hooks/use-outside-click';
-import './product-card.scss';
 import { $api } from 'services/api';
 import { notify } from 'components/toastify';
+import coinIcon from 'assets/images/coin.svg';
 
-export function ProductCard({ id, image, title, price }) {
+import './product-card.scss';
+
+export function ProductCard({ id, image, title, price, in_stock }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.data);
   const cartProducts = useSelector((state) => state.cart.items);
@@ -62,7 +64,15 @@ export function ProductCard({ id, image, title, price }) {
       <img className="products-card__image" src={image} alt="card" />
       <div className="products-card__title-container">
         <h3 className="products-card__title">{title}</h3>
-        <span className="products-card__price">{price} Х</span>
+        <span
+          style={{ display: 'flex', columnGap: '5px', alignItems: 'center' }}
+          className="products-card__price">
+          {price} <img className="coin-m" src={coinIcon} alt="coin" />
+        </span>
+      </div>
+      <div className="products-card__title-container">
+        <h3 className="products-card__title">Количество на складе</h3>
+        <span className="products-card__price">{in_stock} шт.</span>
       </div>
       <div className="products-card__details">
         <button

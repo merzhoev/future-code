@@ -5,6 +5,7 @@ import logoIcon from 'assets/images/logo.svg';
 import cartIcon from 'assets/images/cart.svg';
 import userIcon from 'assets/images/user.svg';
 import orderIcon from 'assets/images/order.svg';
+import coinIcon from 'assets/images/coin.svg';
 import { Modal } from 'components/modal';
 import { Cart } from 'components/cart';
 import { AddCard } from 'components/add-card';
@@ -22,7 +23,13 @@ export function Header() {
           <img className="header__logo" src={logoIcon} alt="logo" />
         </Link>
         <div className="header__details">
-          <span className="header__detail">{user?.money ?? 0} Х</span>
+          <span
+            style={{ display: 'flex', columnGap: '5px', alignItems: 'center' }}
+            className="header__detail">
+            {user?.money ?? 0}
+            <img className="coin-l" src={coinIcon} alt="coin" />
+          </span>
+          {/* <span className="header__detail">{user?.money ?? 0} Х</span> */}
           <button
             onClick={() => setIsCartModalShown(true)}
             className="header__detail header__detail--button">
