@@ -11,22 +11,25 @@ export function AddCard() {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    const { category } = Object.fromEntries(formData);
+    const category = JSON.parse(Object.fromEntries(formData).category);
 
-    setProductAddedStatus('idle');
+    async function createProduct() {
+      try {
+        setProductAddedStatus('idle');
 
-    $api
-      .createProduct(formData)
-      .then(({ data }) =>
-        $api.addProductCategory({ product_id: data.product.id, category_id: +category }),
-      )
-      .then(() => {
+        const { data } = await $api.createProduct(formData);
+        if (category !== null) {
+          await $api.addProductCategory({ product_id: data.product.id, category_id: category });
+        }
+
         setProductAddedStatus('success');
-      })
-      .catch((err) => {
+      } catch (err) {
         setProductAddedStatus('failed');
         console.log(err);
-      });
+      }
+    }
+
+    createProduct();
 
     e.target.reset();
   }

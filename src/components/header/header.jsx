@@ -4,10 +4,11 @@ import { useSelector } from 'react-redux';
 import logoIcon from 'assets/images/logo.svg';
 import cartIcon from 'assets/images/cart.svg';
 import userIcon from 'assets/images/user.svg';
+import orderIcon from 'assets/images/order.svg';
 import { Modal } from 'components/modal';
 import { Cart } from 'components/cart';
-import './header.scss';
 import { AddCard } from 'components/add-card';
+import './header.scss';
 
 export function Header() {
   const [isCartModalShown, setIsCartModalShown] = useState(false);
@@ -33,11 +34,18 @@ export function Header() {
             </button>
           </Link>
           {user !== null && user.is_admin && (
-            <button
-              onClick={() => setIsAddCardModalShown(true)}
-              className="header__detail header__detail--button header__detail--add-btn">
-              +
-            </button>
+            <>
+              <button
+                onClick={() => setIsAddCardModalShown(true)}
+                className="header__detail header__detail--button header__detail--add-btn">
+                +
+              </button>
+              <Link to="/orders">
+                <button className="header__detail header__detail--button">
+                  <img width={22} src={orderIcon} alt="order" />
+                </button>
+              </Link>
+            </>
           )}
         </div>
       </div>

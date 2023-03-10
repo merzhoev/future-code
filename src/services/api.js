@@ -9,12 +9,21 @@ class Api {
     return instance.post("orders/make", { orders });
   }
 
+  getOrders(completed) {
+    return instance.get(`orders`);
+    // return instance.get(`orders/?completed=${completed}`);
+  }
+
   getUser() {
     return instance.get("users/me");
   }
 
   getProducts(params) {
     return instance.get(`products${params}`);
+  }
+
+  editProduct(id, visible) {
+    return instance.post(`products/edit/${id}`, { visible });
   }
 
   createProduct(productData) {
