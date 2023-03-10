@@ -26,11 +26,10 @@ instance.interceptors.response.use(
   async (error) => {
     const config = error?.config;
 
-    if (error?.response?.status === 500 && !config?.sent) {
+    if (error?.response?.status === 401 && !config?.sent) {
       config.sent = true;
 
       localStorage.removeItem("token")
-      console.log('redirect')
       window.location.pathname = '/login'
 
       return axios(config);
