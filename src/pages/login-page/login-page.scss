@@ -1,37 +1,27 @@
 .main {
-  background-color: var(--bg-color);
   display: flex;
+  height: 100vh;
+  width: 100vw;
   align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: white;
+  padding-left: 60px;
+
+  background: no-repeat 100% url("/assets/images/loginImg.png");
+  background-size: cover;
 }
 
 .error {
   color: red;
 }
 
-.authContainer {
-  width: 320px;
-  background-color: var(--secondary-bg-color);
-  box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.04);
-  border-radius: 16px;
-
-  padding: 50px 32px;
-  margin: 24px 12px;
-}
-
 .auth {
   display: flex;
+  width: 360px;
+  min-width: 200px;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: 120%;
-  font-style: normal;
+
+  img {
+    margin-bottom: 100px;
+  }
 
   &__title {
     font-family: "Montserrat";
@@ -41,43 +31,51 @@
 
   &__form {
     display: flex;
+    align-items: center;
     flex-direction: column;
     margin-top: 32px;
 
-    label {
-      font-family: "Montserrat";
-      font-size: 25px;
-      margin: 5px 0;
-      font-weight: 300;
-      font-size: 16px;
-      line-height: 19px;
-    }
-
     input {
+      outline: none;
       margin-bottom: 10px;
       padding: 15px;
       gap: 10px;
+      width: 100%;
 
-      background: #ffffff;
-      border: 1px solid #c9cacc;
-      border-radius: 4px;
+      background: var(--secondary-bg-color);
+      box-shadow: 1px 4px 3px rgba(0, 0, 0, 0.24),
+        -1px -3px 7px rgba(48, 213, 246, 0.35);
+      border-radius: 100px;
+      border: none;
     }
   }
 
-  &__buttons {
-    &__blue {
-      color: #ffffff;
-    }
-    &__white {
-      background-color: #ffffff;
-    }
-    button {
-      padding: 0px 24px;
-      margin: 15px 0;
-      gap: 14px;
+  &__button {
+    padding: 0px 24px;
+    margin: 15px 0;
+    gap: 14px;
 
-      width: 100%;
-      height: 40px;
+    width: 80%;
+    height: 40px;
+
+    background: var(--primary-color);
+
+    box-shadow: 0px 0px 15px rgba(48, 213, 246, 0.76);
+    color: white;
+    border-radius: 100px;
+    border: none;
+
+    &:hover{
+      background-color: #38abdf;
     }
+    &:active{
+      background: var(--primary-color);
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .main {
+    padding: 20px;
   }
 }

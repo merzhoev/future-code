@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { $api } from 'services/api';
-import { isAuth } from 'services/useAuth';
-import './login-page.scss';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { $api } from "services/api";
+import { isAuth } from "services/useAuth";
+import logo from "assets/images/newLogo.svg";
+import loginImg from "assets/images/loginImg.png";
+import "./login-page.scss";
 
 export function LoginPage() {
-  const [login, setLogin] = useState('');
-  const [pass, setPass] = useState('');
+  const [login, setLogin] = useState("");
+  const [pass, setPass] = useState("");
   const [error, setError] = useState(false);
 
   const navigate = useNavigate();
@@ -16,8 +18,8 @@ export function LoginPage() {
       .login(login, pass)
       .then((response) => {
         if (response.data.token) {
-          localStorage.setItem('token', JSON.stringify(response.data.token));
-          navigate('/');
+          localStorage.setItem("token", JSON.stringify(response.data.token));
+          navigate("/");
         }
       })
       .catch(() => setError(true));
@@ -25,44 +27,41 @@ export function LoginPage() {
 
   useEffect(() => {
     if (isAuth()) {
-      navigate('/');
+      navigate("/");
     }
   }, []);
 
   return (
     <div className="main">
-      <div className="authContainer auth">
-        <h2 className="auth__title">Вход</h2>
+      <div className="auth">
+        <img src={logo} alt="logo" />
         <div className="auth__form">
-          <label htmlFor="login">Логин</label>
           <input
             value={login}
             onChange={(change) => setLogin(change.target.value)}
             type="email"
             id="login"
-            placeholder="Введите логин..."
+            placeholder="Логин"
           />
-          <label htmlFor="pass">Пароль</label>
           <input
             value={pass}
             onChange={(change) => setPass(change.target.value)}
             type="password"
             id="pass"
-            placeholder="Введите пароль..."
+            placeholder="Пароль"
           />
           {error ? (
             <label className="error" htmlFor="error">
               Неверный логин или пароль
             </label>
           ) : (
-            ''
+            ""
           )}
-          <div className="auth__buttons ">
-            <button onClick={() => handleLogin()} className="btn">
-              {' '}
-              Войти
-            </button>
-          </div>
+
+          <button onClick={() => handleLogin()} className="auth__button">
+            {" "}
+            Войти
+          </button>
         </div>
       </div>
     </div>
