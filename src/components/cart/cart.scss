@@ -79,6 +79,11 @@
       }
     }
 
+    &__buttons{
+      display: flex;
+      align-items: center;
+    }
+
     &__button,
     &__amount {
       font-weight: 400;
@@ -87,11 +92,24 @@
       letter-spacing: 0.04em;
       padding: 10px;
       border-radius: 5px;
+      box-shadow: 1px 4px 3px rgba(0, 0, 0, 0.06),
+        -1px -3px 3px rgba(48, 213, 246, 0.32);
+      background-color: var(--button-bg-color);
+      color: white;
+    }
+
+    &__amount {
+      width: 44px;
+      text-align: center;
     }
 
     &__button {
+      display: flex;
+      align-items: center;
       cursor: pointer;
       border: none;
+      height: 35px;
+      margin: 5px;
     }
 
     &__price {
@@ -178,8 +196,8 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       padding: 20px 45px;
-      background-color: var(--button-bg-color);
-      color: var(--bg-color);
+      background-color: var(--primary-color);
+      color: var(--text-color);
       cursor: pointer;
       border: none;
       border-radius: 38px;
@@ -227,6 +245,10 @@
   .cart-card__button {
     font-size: 12px;
     padding: 5px;
+  }
+
+  .cart-card__amount{
+    width: 25px;
   }
 
   .cart-card__button {

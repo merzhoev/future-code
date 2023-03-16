@@ -33,7 +33,7 @@ export function CartCard({ id, title, image, totalPrice, amount }) {
               className="cart-card__button">
               -
             </button>
-            <span className="cart-card__amount">{amount}</span>
+            <p className="cart-card__amount">{amount}</p>
             <button onClick={handlePlusClick} className="cart-card__button">
               +
             </button>
