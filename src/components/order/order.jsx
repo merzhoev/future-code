@@ -1,5 +1,5 @@
-import React from "react";
-import "./order.scss";
+import React from 'react';
+import './order.scss';
 
 export default function Order({ products, user }) {
   //   products.forEach(
@@ -14,16 +14,12 @@ export default function Order({ products, user }) {
       <ul className="order__products">
         {products.map((product) => (
           <li key={product.id} className="order__product">
-            <div className="order__info" >
-              <img
-                className="order__img"
-                src={`https://store.kod06.ru${product.image}`}
-                alt="product-img"
-              />
+            <div className="order__info">
+              <img className="order__img" src={product.image} alt="product-img" />
               <h4>{product.title}</h4>
             </div>
             <div>
-                <h4>Кол-во {product.amount}</h4>
+              <h4>Кол-во {product.amount}</h4>
             </div>
           </li>
         ))}
