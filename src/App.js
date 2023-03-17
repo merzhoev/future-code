@@ -7,8 +7,11 @@ import ProtectedRoute from "services/useAuth";
 import { AuthLayout } from "layouts/auth-layout";
 import { Toastify } from "components/toastify";
 import { OrderPage } from "pages/order-page/order-page";
+import { useResetScroll } from "hooks/useResetScroll";
 
 function App() {
+  useResetScroll()
+
   return (
     <>
       <Toastify
