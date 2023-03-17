@@ -6,6 +6,8 @@ import "./order-page.scss";
 export function OrderPage() {
   const orders = useSelector((state) => state.orders.items);
 
+  console.log(orders)
+
   return (
     <div className="orders container">
       <div className="orders__title-container">
