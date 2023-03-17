@@ -1,5 +1,5 @@
-import React from "react";
-import "./order.scss";
+import React from 'react';
+import './order.scss';
 
 export default function Order({ products, user, created_at }) {
   //   products.forEach(

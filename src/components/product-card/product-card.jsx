@@ -13,6 +13,7 @@ import './product-card.scss';
 export function ProductCard({ id, image, title, price, in_stock }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.data);
+  const isAdmin = user !== null && user.is_admin;
   const cartProducts = useSelector((state) => state.cart.items);
   const isCartAdded = cartProducts.some((card) => card.id === id);
   const [isOptionsShown, setIsOptionsShown] = useState(false);
@@ -27,6 +28,11 @@ export function ProductCard({ id, image, title, price, in_stock }) {
   }
 
   const handleAddClick = () => {
+    if (in_stock <= 0) {
+      notify('Товара нет на складе', 'failed');
+      return;
+    }
+
     const cartProducts = {
       id,
       title,
@@ -44,7 +50,7 @@ export function ProductCard({ id, image, title, price, in_stock }) {
 
   return (
     <div key={id} className="products-card">
-      {user !== null && user.is_admin && (
+      {isAdmin && (
         <div ref={optionsRef} className="products-card__options">
           <button
             onClick={() => setIsOptionsShown((is) => !is)}
@@ -70,10 +76,12 @@ export function ProductCard({ id, image, title, price, in_stock }) {
           {price} <img className="coin-m" src={coinIcon} alt="coin" />
         </span>
       </div>
-      <div className="products-card__title-container">
-        <h3 className="products-card__title">Количество на складе</h3>
-        <span className="products-card__price">{in_stock} шт.</span>
-      </div>
+      {isAdmin && (
+        <div className="products-card__title-container">
+          <h3 className="products-card__title">Количество на складе</h3>
+          <span className="products-card__price">{in_stock} шт.</span>
+        </div>
+      )}
       <div className="products-card__details">
         <button
           disabled={isCartAdded}
