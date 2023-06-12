@@ -3,6 +3,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './toastify.scss';
 
-export function Toastify(...props) {
-  return <ToastContainer {...props[0]} />;
+export function Toastify(props) {
+  return <ToastContainer {...props} />;
 }

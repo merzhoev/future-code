@@ -10,36 +10,59 @@ import { Modal } from 'components/modal';
 import { Cart } from 'components/cart';
 import { AddCard } from 'components/add-card';
 import './header.scss';
+import { notify } from 'components/toastify';
+import { ModalAuth } from 'components/modal-auth';
 
 export function Header() {
   const [isCartModalShown, setIsCartModalShown] = useState(false);
   const [isAddCardModalShown, setIsAddCardModalShown] = useState(false);
+  const [isModalAuthShown, setIsModalAuthShown] = useState(false);
   const user = useSelector((state) => state.user.data);
+
+  const onModalAuthShown = () => {
+    setIsModalAuthShown(true);
+    // notify(
+    //   <p>
+    //     <span onClick={() => console.log('hello')}>Авторизуйтесь</span>, чтобы у вас был доступ к
+    //     этому функционалу
+    //   </p>,
+    //   'failed',
+    // );
+  };
 
   return (
     <header className="header">
       <div className="header__inner ">
+        <ModalAuth isShown={isModalAuthShown} onClose={() => setIsModalAuthShown(false)} />
         <Link to="/">
           <img className="header__logo" src={logoIcon} alt="logo" />
         </Link>
         <div className="header__details">
-          <span
-            style={{ display: 'flex', columnGap: '5px', alignItems: 'center' }}
-            className="header__detail">
-            {user?.money ?? 0}
-            <img className="coin-l" src={coinIcon} alt="coin" />
-          </span>
+          {user !== null && (
+            <span
+              style={{ display: 'flex', columnGap: '5px', alignItems: 'center' }}
+              className="header__detail">
+              {user?.money ?? 0}
+              <img className="coin-l" src={coinIcon} alt="coin" />
+            </span>
+          )}
           {/* <span className="header__detail">{user?.money ?? 0} Х</span> */}
           <button
-            onClick={() => setIsCartModalShown(true)}
+            onClick={user ? () => setIsCartModalShown(true) : onModalAuthShown}
             className="header__detail header__detail--button">
             <img src={cartIcon} alt="cart" />
           </button>
-          <Link to="/profile">
-            <button className="header__detail header__detail--button">
+          {user === null ? (
+            <button onClick={onModalAuthShown} className="header__detail header__detail--button">
               <img src={userIcon} alt="user" />
             </button>
-          </Link>
+          ) : (
+            <Link to="/profile">
+              <button className="header__detail header__detail--button">
+                <img src={userIcon} alt="user" />
+              </button>
+            </Link>
+          )}
           {user !== null && user.is_admin && (
             <>
               <button

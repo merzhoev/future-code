@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { $api } from "services/api";
-import { isAuth } from "services/useAuth";
-import logo from "assets/images/newLogo.svg";
-import loginImg from "assets/images/loginImg.png";
-import "./login-page.scss";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { $api } from 'services/api';
+import { isAuth } from 'services/useAuth';
+import logo from 'assets/images/newLogo.svg';
+import loginImg from 'assets/images/loginImg.png';
+import './login-page.scss';
 
 export function LoginPage() {
-  const [login, setLogin] = useState("");
-  const [pass, setPass] = useState("");
+  const [login, setLogin] = useState('');
+  const [pass, setPass] = useState('');
   const [error, setError] = useState(false);
 
   const navigate = useNavigate();
@@ -18,8 +18,8 @@ export function LoginPage() {
       .login(login, pass)
       .then((response) => {
         if (response.data.token) {
-          localStorage.setItem("token", JSON.stringify(response.data.token));
-          navigate("/");
+          localStorage.setItem('token', JSON.stringify(response.data.token));
+          navigate('/');
         }
       })
       .catch(() => setError(true));
@@ -27,7 +27,7 @@ export function LoginPage() {
 
   useEffect(() => {
     if (isAuth()) {
-      navigate("/");
+      navigate('/');
     }
   }, []);
 
@@ -55,11 +55,11 @@ export function LoginPage() {
               Неверный логин или пароль
             </label>
           ) : (
-            ""
+            ''
           )}
 
           <button onClick={() => handleLogin()} className="auth__button">
-            {" "}
+            {' '}
             Войти
           </button>
         </div>

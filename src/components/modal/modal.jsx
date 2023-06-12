@@ -3,7 +3,9 @@ import closeIcon from 'assets/images/close.svg';
 import './modal.scss';
 
 export function Modal({ isShown, onClose, children }) {
-  return isShown ? (
+  if (!isShown) return null;
+
+  return (
     <div className="modal">
       <div onClick={onClose} className="modal__overlay"></div>
       <div className="modal__content">
@@ -11,5 +13,5 @@ export function Modal({ isShown, onClose, children }) {
         {children}
       </div>
     </div>
-  ) : null;
+  );
 }
