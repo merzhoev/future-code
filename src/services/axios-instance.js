@@ -30,12 +30,12 @@ instance.interceptors.response.use(
       config.sent = true;
 
       localStorage.removeItem("token")
-      window.location.pathname = '/login'
+      window.location.pathname = '/'
 
-      return axios(config);
+      return config;
     }
-    return Promise.reject(error);
-  }
+  },
+  (error) => Promise.reject(error)
 );
 
 export default instance;

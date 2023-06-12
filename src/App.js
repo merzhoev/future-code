@@ -3,7 +3,6 @@ import { LoginPage } from "pages/login-page";
 import { ProfilePage } from "pages/profile-page";
 import { HomePage } from "pages/home-page";
 import { NotFoundPage } from "pages/notFound-page";
-import ProtectedRoute from "services/useAuth";
 import { AuthLayout } from "layouts/auth-layout";
 import { Toastify } from "components/toastify";
 import { OrderPage } from "pages/order-page/order-page";
@@ -18,12 +17,12 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<AuthLayout />}>
-          <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+          <Route index element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/orders" element={<OrderPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
-        <Route path="/login" element={<LoginPage />} />
+        {/* <Route path="/login" element={<LoginPage />} /> */}
       </Routes>
     </>
   );

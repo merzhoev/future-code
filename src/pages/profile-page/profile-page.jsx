@@ -1,16 +1,16 @@
-import React from "react";
-import "./profile-page.scss";
-import userLogo from "assets/images/user.svg";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import './profile-page.scss';
+import userLogo from 'assets/images/user.svg';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export function ProfilePage() {
   const user = useSelector((state) => state.user.data);
   const navigate = useNavigate();
 
   const handleOutClick = () => {
-    localStorage.removeItem("token");
-    navigate("/login") 
+    localStorage.removeItem('token');
+    window.location.pathname = '/';
   };
 
   return (
@@ -22,7 +22,7 @@ export function ProfilePage() {
           </div>
           <h2 className="profile__name">{`${user.last_name} ${user.first_name} ${user.patronymic}`}</h2>
           <p className="profile__team">
-            {" "}
+            {' '}
             Команда
             <br /> {user.team_name}
           </p>

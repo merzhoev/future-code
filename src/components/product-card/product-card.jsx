@@ -9,6 +9,7 @@ import { notify } from 'components/toastify';
 import coinIcon from 'assets/images/coin.svg';
 
 import './product-card.scss';
+import { ModalAuth } from 'components/modal-auth';
 
 export function ProductCard({ id, image, title, price, in_stock }) {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export function ProductCard({ id, image, title, price, in_stock }) {
   const cartProducts = useSelector((state) => state.cart.items);
   const isCartAdded = cartProducts.some((card) => card.id === id);
   const [isOptionsShown, setIsOptionsShown] = useState(false);
+  const [isModalAuthShown, setIsModalAuthShown] = useState(false);
 
   function handleRemoveClick() {
     if (window.confirm('Вы действительно хотите удалить товар?')) {
@@ -28,6 +30,11 @@ export function ProductCard({ id, image, title, price, in_stock }) {
   }
 
   const handleAddClick = () => {
+    if (user === null) {
+      setIsModalAuthShown(true);
+      return;
+    }
+
     if (in_stock <= 0) {
       notify('Товара нет на складе', 'failed');
       return;
@@ -50,6 +57,7 @@ export function ProductCard({ id, image, title, price, in_stock }) {
 
   return (
     <div key={id} className="products-card">
+      <ModalAuth isShown={isModalAuthShown} onClose={() => setIsModalAuthShown(false)} />
       {isAdmin && (
         <div ref={optionsRef} className="products-card__options">
           <button
